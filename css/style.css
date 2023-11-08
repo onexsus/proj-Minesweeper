@@ -2,7 +2,48 @@
 h1{
   text-align: center;
 }
+.box-info{
+  text-align: center;
+  /* margin: 0 auto; */
+}
+table {
+  margin: auto;
+}
 
+.box-info{
+  display: block;
+  display: flex;
+  justify-content: center;
+}
+
+.info{
+  margin-left: 15px;
+  margin-right: 15px;
+  font-size: 24px;
+}
+.box-game{
+  padding-top: 60px;
+  width: 600px;
+  margin: auto;
+}
+.board{
+  margin: auto;
+}
 .cell{
-  background-color: rgb(182, 180, 180) ;
+  background-color: rgb(216, 216, 216) ;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+
+.show{
+  background-color: rgb(133, 133, 133);
+}
+
+.img-size{
+  width: 15px;
+  height: 15px;
+}
+.hide {
+  /* display: none; */
 }
