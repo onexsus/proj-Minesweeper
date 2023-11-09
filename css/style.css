@@ -8,7 +8,7 @@ h1{
 }
 table {
   margin: auto;
-  background-color: lightblue;
+  background-color: rgb(15, 128, 235 );
   padding: 15px;
 }
 
@@ -21,10 +21,18 @@ table {
 .info{
   margin-left: 15px;
   margin-right: 15px;
+  padding: 10px;
+
   font-size: 24px;
+
+  width: 180px;
+  height: 30px;
+
+  border-radius: 10px;
+  background-color: rgb(4, 108, 228  );
 }
 .box-game{
-  padding-top: 60px;
+  padding-top: 20px;
   margin: auto;
 
 }
@@ -37,10 +45,11 @@ table {
   height: 20px;
   text-align: center;
   align-items: center;
+  font-weight: 600;
 }
 
 .show{
-  background-color: rgb(133, 133, 133);
+  background-color: rgb(163, 165, 166 );
   cursor: pointer;
 }
 
@@ -48,6 +57,77 @@ table {
   width: 15px;
   height: 15px;
 }
-.hide {
-  /* display: none; */
+.box-glevel{
+  display: block;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
+.btn-level{
+margin-left: 15px;
+margin-right: 15px;
+background-color: rgb(4, 214, 228 );
+color: black;
+font-weight: 700;
+width: 70px;
+height: 30px;
+border-radius: 10px;
+cursor: pointer;
+}
+
+.box-btn-game{
+  display: block;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-game{
+  width: 30px;
+  height: 30px;
+  padding: 2px;
+  font-size: 100%;
+}
+
+
+footer{
+  position: absolute;
+  text-align: center;
+  bottom: -20px;
+  width: 100%;
+  height: 2.5rem;
+  color: aliceblue;
+}
+
+.num-1{
+  color: blue;
+}
+.num-2{
+  color: green;
+}
+.num-3{
+  color: red;
+}
+.num-4{
+  color: 4, 52, 108;
+}
+.num-5{
+  color: rgb(95, 40, 40);
+}
+.num-6{
+  color: rgb(143, 143, 6);
+}
+.num-7{
+  color: rgb(170, 87, 170);
+}
+.num-8{
+  color: rgb(180, 143, 149);
+}
+ .body-cover{
+  background-image:url("/img/background.jpg");
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  height: 100vh;
+ }
+ .boom{
+  background-color: red;
+ }

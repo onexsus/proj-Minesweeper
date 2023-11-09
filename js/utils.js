@@ -14,24 +14,7 @@ function createMat(ROWS, COLS) {
 }
 
 
-function getRandomEmptyCellPosition(board) {
-    var emptyCells = []
-    for (var i = 0; i < board.length; i++) {
-        for (var j = 0; j < board[i].length; j++) {
-            const cell = board[i][j]
-            // console.log(cell)
-            if (cell.isMine=== false) {
-                emptyCells.push({ i, j })
-              }
-            }
-          }
-          // console.log(emptyCells)
 
-    if(!emptyCells.length) return null
-
-    const randIdx = getRandomInt(0, emptyCells.length)
-    return emptyCells[randIdx]
-}
 
 
 

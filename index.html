@@ -6,21 +6,30 @@
   <link rel="stylesheet" href="css/style.css">
   <title>Minesweeper</title>
 </head>
-<body onload="onInit()" >
+<body onload="onInit()" class="body-cover">
   <h1>Mine Sweeper 💣 </h1>
   <div class="box-info"> 
-    <div class="info">Time : <span class="min">0</span>:<span class="sec">00</div>
+    <div class="info">Time : <span class="sec">00</div>
     <div class="info">score : <span class="score">0</span></div>
     <div class="info">Marked : <span class="marked">0</span></div>
   </div>
-  <div class="box-game">
-    <table >
-      <tbody class="board" >
-
-      </table>
+  <div class="box-glevel"> 
+    <div class="glevel"> <button class="btn-level" onclick="btnGameLevel(1)">Beginner</button></div>
+    <div class="glevel"> <button class="btn-level" onclick="btnGameLevel(2)">Medium</button></div>
+    <div class="glevel"> <button class="btn-level" onclick="btnGameLevel(3)">Expert</button></div>
   </div>
+  <div class="box-game">
+      <div class="box-btn-game">
+        <button class="btn-game" onclick="onInit()"></button>
+      </div>
+      <table >
+        <tbody class="board" >
   
-  <script src="js/utils.js"></script>
-  <script src="js/main.js"></script>
-</body>
+        </table>
+    </div>
+    
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+    <footer>Create by 🐼 Boris Kho</footer>
+  </body>
 </html>
