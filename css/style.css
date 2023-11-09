@@ -8,6 +8,8 @@ h1{
 }
 table {
   margin: auto;
+  background-color: lightblue;
+  padding: 15px;
 }
 
 .box-info{
@@ -23,8 +25,8 @@ table {
 }
 .box-game{
   padding-top: 60px;
-  width: 600px;
   margin: auto;
+
 }
 .board{
   margin: auto;
@@ -34,10 +36,12 @@ table {
   width: 20px;
   height: 20px;
   text-align: center;
+  align-items: center;
 }
 
 .show{
   background-color: rgb(133, 133, 133);
+  cursor: pointer;
 }
 
 .img-size{

@@ -16,7 +16,7 @@ const FLAG_IMG= '<img class="img-size" src="img/flag.png">'
 
 var gBoard
 var gGame
- 
+ var marked
 
 
 function onInit() {
@@ -26,7 +26,7 @@ function onInit() {
     markedCount: 0,
     secsPassed: 0
    }
-   
+   marked=0
   gBoard=createBoard(gBeginner.SIZE,gBeginner.SIZE)
   console.table(gBoard)
   renderBoard(gBoard)
@@ -50,11 +50,11 @@ function renderBoard(board){
       if(currCell.isShown===false) cellClass+=' show'
       strHTML += `\t<td 
       data-i="${i}" data-j="${j}" 
-      class="${cellClass}" onclick="onCellClicked(this, ${i}, ${j}) ">${num} `;
+      class="${cellClass}" onclick="onCellClicked(this, ${i}, ${j}) "">${num} `;
       if(currCell.isMine===true && currCell.isShown ===true ){
         strHTML+= MINE_IMG
       } 
-      if(currCell.isMarked===true) strHTML+=FLAG_IMG
+      if(currCell.isMarked===true && currCell.isMine===false) strHTML+=FLAG_IMG
       strHTML += "</td>\n";
     }
     strHTML += "</tr>\n";
@@ -63,15 +63,43 @@ function renderBoard(board){
   const elBoard= document.querySelector('.board')
   // console.log(elBoard)
   elBoard.innerHTML = strHTML
+  const elCells=document.querySelectorAll('td')
+  // console.log(elCells.length)
+  for(let i=0;i<elCells.length;i++){
+    elCells[i].addEventListener('contextmenu', event => {
+      event.preventDefault() ,onCellMarked(elCells[i])});
+  }
+  const elMarked=document.querySelector('.marked')
+  elMarked.innerText=marked
+  
+  // console.log(elBoard)
+
+}
+function onCellMarked(elCell) {
+  // console.log(elCell)
+  var i= +elCell.getAttribute('data-i')
+  var j= +elCell.getAttribute('data-j')
+  // console.log(i+j)
+  if(gBoard[i][j].isMarked===false){
+    gBoard[i][j].isMarked=true
+    marked++
+  }else{
+    gBoard[i][j].isMarked=false
+    marked--
+  }
+  renderBoard(gBoard)
 
 }
 
 function onCellClicked(elCell, i, j) {
+  // console.log(event.button)
   var currCell=gBoard[i][j]
   if(gGame.isOn===false) return
   if(currCell.isShown===false){
     gBoard[i][j].isShown=true
-    // elCell.classList.remove('show')
+  }
+  if(currCell.isMine===true){
+    gGame.isOn=false
   }
   renderBoard(gBoard)
   console.log(gBoard)
