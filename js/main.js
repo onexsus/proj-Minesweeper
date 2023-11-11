@@ -14,12 +14,12 @@ const Expert={
 const MINE_IMG= '<img class="img-size" src="img/mine.png">'
 const FLAG_IMG= '<img class="img-size" src="img/flag.png">'
 
-const effectStartGame=new Audio('sounds/start.waw')
+const effectStartGame=new Audio('sounds/start.mp3')
 const effectBoom=new Audio('sounds/boom.mp3')
 const effectLose=new Audio('sounds/lose.mp3')
-const effectWin=new Audio('sounds/win3.waw')
-const effectFlag=new Audio('sounds/flag.waw')
-const effectClick=new Audio('sounds/click.waw')
+const effectWin=new Audio('sounds/win3.mp3')
+const effectFlag=new Audio('sounds/flag.mp3')
+const effectClick=new Audio('sounds/click.mp3')
 
 var gBoard
 var gGame
@@ -30,6 +30,8 @@ var firstClick
 var showCells
 var gameStatus
 var min
+var LIVES
+var usedLives
 
 
 function onInit() {
@@ -41,6 +43,8 @@ function onInit() {
     markedCount: 0,
     secsPassed: 0,
    }
+   LIVES=3
+   usedLives=0
    gameStatus='😊'
    showCells=(gLevel.SIZE*gLevel.SIZE)-gLevel.MINES
    gBoard=createBoard( gLevel.SIZE,gLevel.SIZE)
@@ -106,6 +110,8 @@ function renderBoard(board){
   elScore.innerText=gGame.shownCount
   const elBtnGame=document.querySelector('.btn-game')
   elBtnGame.innerHTML=gameStatus
+  const elLives=document.querySelector('.lives')
+  elLives.innerHTML=`${LIVES} LIVES LEFT`
   // console.log(elBoard)
   addColor(gBoard)
 
@@ -200,13 +206,14 @@ function onCellMarked(elCell) {
     gBoard[i][j].isMarked=false
     gGame.markedCount--
   }
-  if(showCells===gGame.shownCount && gGame.markedCount===gLevel.MINES){
+  if(showCells===gGame.shownCount-usedLives && gGame.markedCount+usedLives===gLevel.MINES){
     gGame.isOn=false
     winGame()
   }
   renderBoard(gBoard)
   
 }
+
 function winGame(){
   gameStatus='🥇'
   effectWin.play()
@@ -230,7 +237,7 @@ function onCellClicked(elCell, i, j) {
     firstClick=false
     play()
     startTimer()
-  }else{
+  }
     var currCell=gBoard[i][j]
     if(gGame.isOn===false) return
     if(currCell.isMarked===true)return
@@ -240,18 +247,23 @@ function onCellClicked(elCell, i, j) {
     }
     if(currCell.isMine===true){
       effectBoom.play()
-      gBoard[i][j].isShown=true
-      gGame.isOn=false
+      LIVES--
+      usedLives++
+      if(usedLives===3||gLevel.MINES===usedLives ){
+        gBoard[i][j].isShown=true
+        gGame.isOn=false
+        loseGame()
+        return
+      }
     }
-    if(showCells===gGame.shownCount &&
-       gGame.markedCount===gLevel.MINES){
+    if(showCells===gGame.shownCount-usedLives &&
+       gGame.markedCount+usedLives===gLevel.MINES){
       gGame.isOn=false
       winGame()
     }
     expandShown(gBoard,i,j)
-    renderBoard(gBoard)
-    if(gGame.isOn===false) loseGame()
-  }
+    renderBoard(gBoard) 
+  
 }
 
 function buildBoard() {
